@@ -1,4 +1,5 @@
 🛒 E-Commerce Admin Dashboard
+-------------------------------
 
 A full-stack admin system for managing an e-commerce platform, built using Flask, Streamlit, and MySQL. It provides a simple but functional control panel for product management, customer tracking, and sales monitoring.
 
