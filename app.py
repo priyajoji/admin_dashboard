@@ -41,6 +41,30 @@ def add_product():
     db.commit()
     return jsonify({"message": "Product added"})
 
+@app.route("/products/<int:id>", methods=["PUT"])
+def update_product(id):
+    data = request.json
+
+    cursor.execute("""
+        UPDATE Product_Details
+        SET product_name=%s,
+            product_price=%s,
+            product_status=%s,
+            category_id=%s,
+            supplier_id=%s
+        WHERE product_id=%s
+    """, (
+        data["product_name"],
+        data["product_price"],
+        data["product_status"],
+        data["category_id"],
+        data["supplier_id"],
+        id
+    ))
+
+    db.commit()
+    return jsonify({"message": "Product updated"})
+
 
 @app.route("/products/<int:id>", methods=["DELETE"])
 def delete_product(id):

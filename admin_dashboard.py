@@ -171,6 +171,27 @@ if menu == "Inventory":
             requests.delete(f"{API}/products/{delete_id}")
             st.warning("Product deleted")
 
+        st.divider()
+        st.subheader("✏️ Update Product")
+
+        update_id = st.number_input("Product ID to Update", min_value=1, step=1)
+
+        u_name = st.text_input("New Product Name")
+        u_price = st.number_input("New Price", min_value=0.0)
+        u_status = st.selectbox("New Status", ["Available", "Out of Stock"])
+        u_category = st.number_input("New Category ID", min_value=1)
+        u_supplier = st.number_input("New Supplier ID", min_value=1)
+
+        if st.button("Update Product"):
+            payload = {
+            "product_name": u_name,
+            "product_price": u_price,
+            "product_status": u_status,
+            "category_id": u_category,
+            "supplier_id": u_supplier
+       }
+            requests.put(f"{API}/products/{update_id}", json=payload)
+            st.success("Product updated successfully")
 
 # ---------------- CUSTOMERS PAGE ----------------
 elif menu == "Customers":
